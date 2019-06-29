@@ -5,13 +5,14 @@ var router = express.Router();
   
  router.get("/", (req, res) => {
         console.log(700)
-      res.render("index");
+      res.render("index", { title: 'Newsweek News Scrapper' });
   });
 
  router.get("/index", (req, res) => {
     res.render("index");
 });
   
-   console.log("htmlRoutes available");
 
    module.exports = router;
+
+

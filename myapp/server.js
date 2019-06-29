@@ -33,7 +33,7 @@ app.set("view engine", "handlebars");
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
-var routes = require("./routes/index");
+var routes = require("./routes/");
 app.use("/", routes);
 
 
