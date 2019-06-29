@@ -1,0 +1,19 @@
+version: "3.1"
+services:
+  client:
+    image: mongo:latest
+    user: "$PUID:$PGID"
+    volumes:
+      - "$PWD/mongoshell-home/:/home/mongodb/"
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      HOME: /home/mongodb/
+networks:
+  default:
+    external:
+      name: ga-tech
+
+# https://docs.mongodb.com/manual/reference/mongo-shell/
+# https://dzone.com/articles/mongodb-commands-cheat-sheet-for-beginners
+
