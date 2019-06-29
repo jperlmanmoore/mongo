@@ -1,15 +1,15 @@
 body {
   padding: 50px;
   height: 100%;
-  background-image: url("../img/burger-close-up-fast-food-103886.jpg");
-}
+  background-image: url("../images/administration-articles-bank-261949.jpg");
+};
 
 h1, li, a {
-   font-family: 'Quattrocento Sans', sans-serif; */
-   /* font-family: 'Special Elite', cursive; */
+   /* font-family: 'Quattrocento Sans', sans-serif; */
+   font-family: 'Special Elite', cursive;
    /* font-family: 'Poiret One', cursive; */
-}
+};
 
 a {
   color: #00B7FF;
-}
+};

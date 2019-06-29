@@ -1,9 +1,17 @@
-var express = require('express');
+
+var express = require("express");
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Newsweek News Scrapper' });
-});
+  
+ router.get("/", (req, res) => {
+        console.log(700)
+      res.render("index");
+  });
 
-module.exports = router;
+ router.get("/index", (req, res) => {
+    res.render("index");
+});
+  
+   console.log("htmlRoutes available");
+
+   module.exports = router;
