@@ -1,6 +1,7 @@
 
 body{
   background-image: url("../images/newsprint-cc.jpg");
+  background-repeat: no-repeat;
  } 
 
 a, h1 {

@@ -18,11 +18,9 @@
         url: "/articles",
         dataType: 'json',
         success: function (response) {
-          console.log("response");
-          const hbsResultsObj = response.results
+          console.log(response);
         }
       });
-      return hbsResultsObj
     });
   
   
