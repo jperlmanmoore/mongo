@@ -11,7 +11,7 @@
     // Whenever someone clicks the #scrape button
     $("#scrape").on("click", function (e) {
       e.preventDefault();
-    
+    console.log(1200)
       // Now make an ajax call for the Article
       $.ajax({
         method: "GET",
@@ -23,6 +23,7 @@
           console.log(hbsObjArticle);
         }
       });
+      return hbsObjArticle;
     });
 
     // Whenever someone clicks the #scrape button
