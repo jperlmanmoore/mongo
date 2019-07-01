@@ -1,15 +1,20 @@
-body {
-  padding: 50px;
-  height: 100%;
-  background-image: url("../images/administration-articles-bank-261949.jpg");
-};
 
-h1, li, a {
-   /* font-family: 'Quattrocento Sans', sans-serif; */
-   font-family: 'Special Elite', cursive;
+body{
+  background-image: url("../images/newsprint-cc.jpg");
+ } 
+
+a, h1 {
+   font-family: 'Quattrocento Sans', sans-serif;
+   /* font-family: 'Special Elite', cursive; */
    /* font-family: 'Poiret One', cursive; */
-};
+}
 
-a {
-  color: #00B7FF;
-};
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}

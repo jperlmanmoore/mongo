@@ -1,0 +1,40 @@
+{{>navbar}}
+<br>
+<br>
+
+{{#each article}}
+<div class="row" id="scrapArticlesAndNotes">
+
+  <div class="col s12 m5">
+    <div class="card-panel grey lighten-5">
+      <div>Title: {{article.title}}</div>
+      <div>Intro: {{article.intro}}I am a very simple card. I am good at containing small bits of
+        information.
+        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in
+        other frameworks.
+      </div>
+      <div>Link{{article.link}}</div>
+    </div>
+  </div>
+
+    <div class="col m1"></div>
+
+    <div class="col s12 m5">
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea1" class="materialize-textarea grey lighten-5" data-length="500"></textarea>
+              <label for="textarea1">Notes</label>
+            </div>
+          </div>
+          <a class="waves-effect waves-light btn">save article & notes</a>
+        </form>
+      </div>
+
+    </div>
+{{/each}}  
+  
+</div>
+
+{{> footer}}
