@@ -1,7 +1,6 @@
 var express = require("express");
 var mongoose = require("mongoose");
 
-
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
@@ -26,25 +25,28 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-
-
 const exphbs = require("express-handlebars");
 app.set("view engine", "handlebars");
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 
 
-require('./models')
+require('./models');
+require('./routes')(app);
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/myapp", { useNewUrlParser: true });
 
 // Routes
 
-app.get("/", (req, res) => {
-    console.log(700)
-  res.render("index", { title: 'Newsweek News Scrapper' });
-});
+// app.get("/", (req, res) => {
+//     console.log(700)
+//   res.render("index", { title: 'Newsweek News Scrapper' });
+// });
 
+// app.get("/", (req, res) => {
+//   console.log(700)
+// res.render("index", { title: 'Newsweek News Scrapper' });
+// });
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
