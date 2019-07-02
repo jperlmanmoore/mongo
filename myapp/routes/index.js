@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const db = require('../models')
+const db = require('../models/index')
 
 console.log("scraping route");
 
@@ -24,22 +24,25 @@ module.exports = app => {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         const $ = cheerio.load(response.data);
         // console.log($);
+        const articleArray = [];
+        console.log(articleArray);
         // Now, we grab every h3 within an article tag, and do the following:
-        $("article").each((i, element) => {
-          const result = {};
+        $("article .inner").each(function(i, element) {
+          let result = {}
           console.log(result);
-          result.title = $(this).children('.inner').children('h3').children('a').text();
-          result.link = $(this).children('.inner').children('h3').children('a').attr('href');
-          result.summary = $(this).children('.inner').children('.summary').text();
+          result.title = $(this).children('h3').children('a').text();
+         result.link = $(this).children('h3').children('a').attr('href');
+          result.summary = $(this).children('.summary').text();
           console.log(result.title);
-
-          
-          db.Article.create(result)
-          .then(function(dbArticle) {
-            console.log(dbArticle);
-          });
+          articleArray.push(result);
+         
+          // db.Article.create(result)
+          // .then(function(dbArticle) {
+          //   console.log(dbArticle);
+          //   res.send('scrape complete');
+          // });
         });
-        res.render('index');
+        res.render('index', articleArray);
       });
 
     // Route for getting all Articles from the db
