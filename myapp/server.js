@@ -30,7 +30,7 @@ app.engine("handlebars", exphbs({defaultLayout: "main"}));
 // Connect to the Mongo DB
 mongoose.connect('mongodb://localhost/mongo',
   { useNewUrlParser: true },
-  function(err, client) {
+  function(err) {
     if (err) throw err;
     console.log("Connected successfully to server");
     app.listen(PORT, () => console.log('Listening on port %s', PORT));

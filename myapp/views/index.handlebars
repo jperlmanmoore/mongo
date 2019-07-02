@@ -7,7 +7,7 @@
         <button id='scrapeArticles' class="waves-effect waves-light btn">get scraping</button>
         <button id='savedArticles' class="waves-effect waves-light btn">see what's saved</button>
 
-{{#each articleArray}}
+{{#each hbsObject}}
 <div class="row" id="scrapArticlesAndNotes">
 
   <div class="col s12 m5">
@@ -16,7 +16,7 @@
       <div id='summary'>{{this.summary}}
       </div>
       <div id='link'>{{this.link}}</div>
-      <a id="saved" class="waves-effect waves-light btn">save article</a>
+      <a id="saved" class="waves-effect waves-light btn btn-flat">save article</a>
     </div>
   </div>
 
@@ -29,14 +29,14 @@
             <div class="input-field col s12">
               <textarea id="textarea1" class="materialize-textarea grey lighten-5" data-length="500"></textarea>
               <label for="textarea1">Notes</label>
+               <a class="waves-effect waves-light btn" id="saveNote">save note</a>
             </div>
           </div>
-          <a class="waves-effect waves-light btn" id="saveNote">save note</a>
         </form>
       </div>
 
     </div>
-{{/each}} 
+{{/each}}
 
     
 </div>

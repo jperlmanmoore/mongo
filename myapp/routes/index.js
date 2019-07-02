@@ -2,13 +2,11 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const db = require('../models/index')
 
-console.log("scraping route");
-
 module.exports = app => {
   app.get("/", (req, res) => {
     console.log("render index")
     res.render("index", {
-      title: 'Newsweek News Scrapper'
+      title: 'Newsweek News Scraper'
     });
   });
 
@@ -33,63 +31,65 @@ module.exports = app => {
           result.title = $(this).children('h3').children('a').text();
           result.link = $(this).children('h3').children('a').attr('href');
           result.summary = $(this).children('.summary').text();
-          console.log(result.title, result.link, result.summary);
+          // console.log(result.title, result.link, result.summary);
 
           db.Article.create(result)
           .then(function (dbArticle) {
             console.log(dbArticle)
-          })
-        }).catch(err => console.log(err))
-        .then(
-          res.render('index', articleArray)
-        );
+          });
+    
+        });
+          res.render('index');
       });
   });
 
-  // Route for getting all Articles from the db
-  app.get("/api/articles", function (req, res) {
-    console.log("article route")
-    // Grab every document in the Articles collection
-    db.Article.find({})
-      .then(function (data) {
-        // If we were able to successfully find Articles, send them back to the client
-        const hbsResultsObj = {
-          Article: data
-        };
-        console.log(hbsResultsObj);
-        res.render("index", hbsResultsObj)
-      })
-      .catch(function (err) {
-        // If an error occurred, send it to the client
-        res.json(err);
-      });
-  });
 
-  // Route for saving/updating an Article's associated Note
-  app.post("/api/articles/:id", function (req, res) {
-    // Create a new note and pass the req.body to the entry
-    db.insertOne({
-      title: req.body.title,
-      summary: req.body.summary,
-      link: req.body.link
-    }, function (err, result) {
-      if (err) return res.send('Error');
-      res.send('Article added');
+// Route for getting all Articles from the db
+app.get("/articles", function(req, res) {
+  console.log("articles get route");
+  db.Article.find({}).sort({_id: -1})
+  .exec(function(err, art) {
+    if (err) {
+      console.log(err);
+    }
+
+    else {
+      var hbsObject = {article: art};
+      res.render('index', hbsObject)
+    }
+  })
+});
+
+
+
+
+ // Route for grabbing a specific Article by id, populate it with it's note
+app.get("/articles/:id", function(req, res) {
+  db.Article.findOne({ _id: req.params.id })
+    .populate("note")
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json(err);
     });
-  });
+});
 
 
-  // Route for saving/updating an Article's associated Note
-  app.post("/api/note/:id", function (req, res) {
-    // Create a new note and pass the req.body to the entry
-    db.insertOne({
-      title: req.body.title,
-      note: req.body.note,
-    }, function (err, result) {
-      if (err) return res.send('Error');
-      res.send('Article added');
+ // Route for saving/updating an Article's associated Note
+app.post("/articles/:id", function(req, res) {  
+  db.Note.create(req.body)
+    .then(function(dbNote) {     
+      return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+    })
+    .then(function(dbArticle) {    
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json(err);
     });
-  });
+});
+
 
   // get article route
 

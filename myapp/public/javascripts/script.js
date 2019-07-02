@@ -3,9 +3,8 @@ $(document).ready(function () {
     // Whenever someone clicks the #scrape button
     $(document).on('click','#scrapeArticles', () => {
     console.log("scrape clicked");
-        fetch("/search", {method: "GET"}).then(() => window.location.replace("/search"))
+        fetch("/search", {method: "GET"}).then(() => res.render("/index"));
     });
-
 
      $('#bothButtons').on('click', '#saved', function(element) {
          console.log("saved clicked");
