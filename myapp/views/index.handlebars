@@ -4,9 +4,45 @@
 
 <div class="center-align">
     <div class='row s12 m6'>
-<a class="waves-effect waves-light btn" href="scrapeArticles">scrape now</a>
-<a class="waves-effect waves-light btn" href="savedArticles">saved articles</a>
+        <a id='scrapeArticles' class="waves-effect waves-light btn">get scraping</a>
+        <a id='savedArticles' class="waves-effect waves-light btn">see what's saved</a>
+
+{{#each hbsObj}}
+<div class="row" id="scrapArticlesAndNotes">
+
+  <div class="col s12 m5">
+    <div class="card-panel grey lighten-5">
+      <div id='title'>{{this.title}}</div>
+      <div id='summary'>Intro: {{this.summary}}I am a very simple card. I am good at containing small bits of
+        information.
+        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in
+        other frameworks.
+      </div>
+      <div id='link'>Link{{this.link}}</div>
+      <a id="saved" class="waves-effect waves-light btn">save article</a>
     </div>
+  </div>
+
+    <div class="col m1"></div>
+
+    <div class="col s12 m5">
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea1" class="materialize-textarea grey lighten-5" data-length="500"></textarea>
+              <label for="textarea1">Notes</label>
+            </div>
+          </div>
+          <a class="waves-effect waves-light btn" id="saveNote">save note</a>
+        </form>
+      </div>
+
+    </div>
+{{/each}} 
+
+    
+</div>
 </div>
 
 {{!-- {{> footer}} --}}
