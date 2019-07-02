@@ -7,7 +7,7 @@ $(document).ready(function () {
     });
 
 
-     $(document).on('click', '#saved', function(element) {
+     $('#bothButtons').on('click', '#scrapeArticles', function(element) {
          console.log("saved clicked");
 
          let title = $(this).class('title').text();
@@ -29,7 +29,7 @@ $(document).ready(function () {
          
      });
 
-     $('#savedArticles').on('click', function() {
+     $('#bothButtons').on('click', 'savedArticles', function() {
          console.log("show saved button clicked");
          fetch("/api/articles", {method: "GET"}).then(() => window.location.replace("/api/search"))
      });
