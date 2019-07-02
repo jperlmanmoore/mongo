@@ -1,13 +1,13 @@
 $(document).ready(function () {
      console.log("clicks");
     // Whenever someone clicks the #scrape button
-    $(document).on('click','#scrape', () => {
+    $(document).on('click','#scrapeArticles', () => {
     console.log("scrape clicked");
-        fetch("/api/search", {method: "GET"}).then(() => window.location.replace("/api/search"))
+        fetch("/search", {method: "GET"}).then(() => window.location.replace("/search"))
     });
 
 
-     $('#bothButtons').on('click', '#scrapeArticles', function(element) {
+     $('#bothButtons').on('click', '#saved', function(element) {
          console.log("saved clicked");
 
          const $card = $(this).closest('.card');

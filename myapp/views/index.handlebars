@@ -7,18 +7,15 @@
         <button id='scrapeArticles' class="waves-effect waves-light btn">get scraping</button>
         <button id='savedArticles' class="waves-effect waves-light btn">see what's saved</button>
 
-{{#each hbsObject}}
+{{#each articleArray}}
 <div class="row" id="scrapArticlesAndNotes">
 
   <div class="col s12 m5">
     <div class="card-panel grey lighten-5">
       <div id='title'>{{this.title}}</div>
-      <div id='summary'>Intro: {{this.summary}}I am a very simple card. I am good at containing small bits of
-        information.
-        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in
-        other frameworks.
+      <div id='summary'>{{this.summary}}
       </div>
-      <div id='link'>Link{{this.link}}</div>
+      <div id='link'>{{this.link}}</div>
       <a id="saved" class="waves-effect waves-light btn">save article</a>
     </div>
   </div>
