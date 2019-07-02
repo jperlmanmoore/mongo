@@ -16,7 +16,7 @@ $(document).ready(function () {
          const link = $card.find('.link').text();
          
 
-         let saved= {
+         let saved = {
              title,
              summary,
              link,
@@ -24,11 +24,11 @@ $(document).ready(function () {
          }
          console.log(saved);
 
-         fetch('api/articles', {
-            method: 'POST',
-            body: JSON.stringify(saved)
-         }).then((response) => {
-            console.log(response)
+        //  fetch('/api/articles', {
+        //     method: 'POST',
+        //     body: JSON.stringify(saved)
+        //  }).then((response) => {
+        //     console.log(response)
          
      });
 
@@ -75,4 +75,4 @@ $(document).ready(function () {
   
   
     });
-})
+

@@ -10,6 +10,9 @@ const exphbs = require("express-handlebars");
 // Initialize Express
 const app = express();
 
+require('./models');
+require('./routes/index')(app);
+
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,20 +23,19 @@ app.use(express.static("public"));
 app.set("view engine", "handlebars");
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 
-require('./routes/index')(app);
-require('./models');
+// require('./routes/index')(app);
+// require('./models');
 
 
 // Connect to the Mongo DB
 mongoose.connect('mongodb://localhost/mongo',
-
   { useNewUrlParser: true },
-
-    console.log("Connected successfully to server"));
-
+  function(err, client) {
+    if (err) throw err;
+    console.log("Connected successfully to server");
     app.listen(PORT, () => console.log('Listening on port %s', PORT));
 
-  ;
+  });
 
   // Start the server
 
