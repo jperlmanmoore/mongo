@@ -1,13 +1,13 @@
 $(document).ready(function () {
      console.log("clicks");
     // Whenever someone clicks the #scrape button
-    $('#scrape').on('click', () => {
+    $(document).on('click','#scrape', () => {
     console.log("scrape clicked");
         fetch("/api/search", {method: "GET"}).then(() => window.location.replace("/api/search"))
     });
 
 
-     $('#saved').on('click', function(element) {
+     $(document).on('click', '#saved', function(element) {
          console.log("saved clicked");
 
          let title = $(this).class('title').text();
