@@ -10,9 +10,11 @@ $(document).ready(function () {
      $('#bothButtons').on('click', '#scrapeArticles', function(element) {
          console.log("saved clicked");
 
-         let title = $(this).class('title').text();
-         let summary = $(this).class('summary').text();
-         let link = $(this).class('link').text();
+         const $card = $(this).closest('.card');
+         const title = $card.find('.title').text();
+         const summary = $card.find('.summary').text();
+         const link = $card.find('.link').text();
+         
 
          let saved= {
              title,
@@ -20,6 +22,7 @@ $(document).ready(function () {
              link,
              note: null
          }
+         console.log(saved);
 
          fetch('api/articles', {
             method: 'POST',
