@@ -1,3 +1,6 @@
+docker-compose-yml
+mongo-client.sh
+
 # Logs
 logs
 *.log
