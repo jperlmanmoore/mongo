@@ -7,15 +7,15 @@
         <button id='scrapeArticles' class="waves-effect waves-light btn">get scraping</button>
         <button id='savedArticles' class="waves-effect waves-light btn">see what's saved</button>
 
-{{#each hbsObject}}
+{{#each Article}}
 <div class="row" id="scrapArticlesAndNotes">
 
   <div class="col s12 m5">
     <div class="card-panel grey lighten-5">
-      <div id='title'>{{this.title}}</div>
-      <div id='summary'>{{this.summary}}
+      <div id='title'>{{title}}</div>
+      <div id='summary'>{{summary}}
       </div>
-      <div id='link'>{{this.link}}</div>
+      <div id='link'>{{link}}</div>
       <a id="saved" class="waves-effect waves-light btn btn-flat">save article</a>
     </div>
   </div>

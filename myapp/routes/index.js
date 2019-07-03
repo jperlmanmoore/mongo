@@ -3,13 +3,13 @@ const cheerio = require('cheerio');
 const db = require('../models/index')
 
 module.exports = app => {
+
   app.get("/", (req, res) => {
     console.log("render index")
     res.render("index", {
       title: 'Newsweek News Scraper'
     });
   });
-
 
   // Routes
   // A GET route for scraping the newsWeek website
@@ -54,8 +54,7 @@ app.get("/articles", function(req, res) {
     }
 
     else {
-      var hbsObject = {article: art};
-      res.render('index', hbsObject)
+      res.render('index', {articles: dbArticles})
     }
   })
 });

@@ -1,42 +1,63 @@
 $(document).ready(function () {
-     console.log("clicks");
+    console.log("clicks");
     // Whenever someone clicks the #scrape button
-    $(document).on('click','#scrapeArticles', () => {
-    console.log("scrape clicked");
-        fetch("/search", {method: "GET"}).then(() => res.render("/index"));
+    $(document).on('click', '#scrapeArticles', () => {
+        console.log("scrape clicked");
+
+        $.ajax("/search", {
+            method: "GET",
+            dataType: 'json',
+            success: response => console.log("ajax response search")
+            })
+            .then(function() {
+                console.log("changed sleep to");
+                // Reload the page to get the updated list
+                location.reload();
+              }
+            );
+        // fetch("/search", {
+        //     headers: {
+        //     'Accept': 'application/json'
+        //     }
+        // })
+        //     .then(response => response.text)
+        //     .then(console.log(text))
+        // .then(data => res.render("index", data.title));
     });
 
-     $('#bothButtons').on('click', '#saved', function(element) {
-         console.log("saved clicked");
+    $('#bothButtons').on('click', '#saved', function (element) {
+        console.log("saved clicked");
 
-         const $card = $(this).closest('.card');
-         const title = $card.find('.title').text();
-         const summary = $card.find('.summary').text();
-         const link = $card.find('.link').text();
-         
+        const $card = $(this).closest('.card');
+        const title = $card.find('.title').text();
+        const summary = $card.find('.summary').text();
+        const link = $card.find('.link').text();
 
-         let saved = {
-             title,
-             summary,
-             link,
-             note: null
-         }
-         console.log(saved);
+
+        let saved = {
+            title,
+            summary,
+            link,
+            note: null
+        }
+        console.log(saved);
 
         //  fetch('/api/articles', {
         //     method: 'POST',
         //     body: JSON.stringify(saved)
         //  }).then((response) => {
         //     console.log(response)
-         
-     });
 
-     $('#bothButtons').on('click', 'savedArticles', function() {
-         console.log("show saved button clicked");
-         fetch("/api/articles", {method: "GET"}).then(() => window.location.replace("/api/search"))
-     });
+    });
 
-     $('#saveNote').on('click', function() {
+    $('#bothButtons').on('click', 'savedArticles', function () {
+        console.log("show saved button clicked");
+        fetch("/api/articles", {
+            method: "GET"
+        }).then(() => window.location.replace("/api/search"))
+    });
+
+    $('#saveNote').on('click', function () {
         let savedNote = $('#textarea1').val().trim();
 
         let savedNoteObj = {
@@ -48,8 +69,10 @@ $(document).ready(function () {
         fetch('/api/Notes', {
             method: 'POST',
             body: JSON.stringify(savedNoteObj)
-        }).then(response => {location.reload()});
-     });
+        }).then(response => {
+            location.reload()
+        });
+    });
 
     //  delete articles
 
@@ -60,7 +83,7 @@ $(document).ready(function () {
     // Whenever someone clicks the #scrape button
     // $(document).on("click", '#saved', function (e) {
     //     e.preventDefault();
-      
+
     //     // Now make an ajax call for the Article
     //     $.ajax({
     //       method: "GET",
@@ -71,7 +94,6 @@ $(document).ready(function () {
     //       }
     //     });
     //   });
-  
-  
-    });
 
+
+});
