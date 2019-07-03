@@ -28,7 +28,7 @@ app.engine("handlebars", exphbs({defaultLayout: "main"}));
 
 
 // Connect to the Mongo DB
-mongoose.connect('mongodb://localhost/mongo',
+mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds343127.mlab.com:43127/heroku_tn9n8dlq',
   { useNewUrlParser: true },
   function(err) {
     if (err) throw err;
