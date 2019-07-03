@@ -54,7 +54,8 @@ app.get("/articles", function(req, res) {
     }
 
     else {
-      res.render('index', {articles: dbArticles})
+      res.render('index', {articles: db.Articles});
+      console.log("db.ARticles");
     }
   })
 });

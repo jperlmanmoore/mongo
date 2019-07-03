@@ -5,24 +5,20 @@ $(document).ready(function () {
         console.log("scrape clicked");
 
         $.ajax("/search", {
-            method: "GET",
+            type: "GET",
             dataType: 'json',
+            
             success: response => console.log("ajax response search")
             })
-            .then(function() {
-                console.log("changed sleep to");
-                // Reload the page to get the updated list
-                location.reload();
-              }
-            );
-        // fetch("/search", {
-        //     headers: {
-        //     'Accept': 'application/json'
-        //     }
-        // })
-        //     .then(response => response.text)
-        //     .then(console.log(text))
-        // .then(data => res.render("index", data.title));
+        .then(
+            $.ajax('/articles', {
+                type: "GET",
+                success: response => {
+                    console.log(response.data)
+           }
+        })
+        );
+        
     });
 
     $('#bothButtons').on('click', '#saved', function (element) {
