@@ -13,12 +13,12 @@ module.exports = app => {
   });
 
 
-  // app.get("/", (req, res) => {
-  //   console.log("render articles on index")
-  //   res.render("index", {
-  //     articles: db.ARticles
-  //   }, );
-  // });
+  app.get("/", (req, res) => {
+    console.log("10000")
+    res.render("index", {
+      articles: db.ARticles
+    }, );
+  });
 
   // Routes
   // A GET route for scraping the newsWeek website
@@ -44,7 +44,7 @@ module.exports = app => {
 
           db.Article.create(result)
             .then(function (dbArticle) {
-              console.log(dbArticle)
+              // console.log(dbArticle)
             });
         });
       });
@@ -57,14 +57,14 @@ module.exports = app => {
     db.Article.find({}).sort({
         _id: -1
       })
-      .exec(function (err, art) {
+      .exec(function (err, doc) {
         if (err) {
           console.log(err);
         } else {
           res.render('index', {
-            articles: db.Articles
+            doc
           });
-          console.log("db.ARticles");
+          console.log(doc, "db.Articles sent back");
         }
       })
   });
