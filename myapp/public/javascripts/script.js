@@ -13,8 +13,9 @@ $(document).ready(function () {
         .then(
             $.ajax('/articles', {
                 type: "GET",
+                dataType: "json",
                 success: response => {
-                    console.log(response.data)
+                    console.log(response.data, "response.data")
            }
         })
         );
