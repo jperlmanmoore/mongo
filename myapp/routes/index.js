@@ -50,7 +50,6 @@ module.exports = app => {
       });
   });
 
-
   // Route for getting all Articles from the db
   app.get("/articles", function (req, res) {
     console.log("articles get route");
